@@ -1,0 +1,40 @@
+{% extends "final/layout.html" %}
+
+{% block body %}
+    <h1 style="text-align: center;">Resources</h1>
+    <br/>
+
+
+    
+    <div class="text-center mx-auto justify-content-center">
+        <u><h3>For Teachers</h3></u>
+        {%for resource in resources%}
+            {%if resource.category.id == 1%}
+                <a href="{{resource.link}}" class="btn btn-secondary" role="button" aria-pressed="true" >{{resource.link}} - {{resource.name}}</a><br/><br/>
+            {%endif%}
+        {%empty%}
+            <li>No Resources</li>
+        {%endfor%}
+        <br/>
+        <u><h3>For Parents</h3></u>
+        {%for resource in resources%}
+            {%if resource.category.id == 3%}
+                <a href="{{resource.link}}" class="btn btn-secondary" role="button" aria-pressed="true">{{resource.link}} - {{resource.name}}</a><br/><br/>
+            {%endif%}
+        {%empty%}
+            <li>No Resources</li>
+        {%endfor%}
+        <br/>
+        <u><h3>For Students</h3></u>
+        {%for resource in resources%}
+            {%if resource.category.id == 2%}
+                <a href="{{resource.link}}" class="btn btn-secondary" role="button" aria-pressed="true">{{resource.link}} - {{resource.name}}</a><br/><br/>
+            {%endif%}
+        {%empty%}
+            <li>No Resources</li>
+        {%endfor%}
+    </div>
+    <br/><br/>
+    <div class="text-center mx-auto justify-content-center">
+    <a href="{% url 'newresources' %}">Want to add more resources?</a></div>
+{% endblock %}

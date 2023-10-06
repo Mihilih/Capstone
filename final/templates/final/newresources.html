@@ -1,0 +1,28 @@
+{% extends "final/layout.html" %}
+
+{% block body %}
+    <h1  style="text-align: center;">New Resource</h1>
+    <!--new article form-->
+    <form action="{% url 'newresources' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" autofocus type="url" name="link" placeholder="URL" required>
+        </div>
+        <br/>
+        <div class="form-group">
+            <input class="form-control" autofocus type="text" name="name" placeholder="Name/Description" required>
+        </div>
+        <br/>
+        <div class="form-group">
+            <select class="form-control col-md-3" name="category" placeholder="Category">
+                <option class="text-muted" value='none'>--Select a Category--</option>
+                <option value='teachers'>Teachers</option>
+                <option value='parents'>Parents</option>
+                <option value='students'>Students</option>
+            </select>
+        </div>
+        <br/>
+        <input type="submit" Value="Save" class="btn btn-outline-secondary" style="margin-left: 0.2cm;">                
+    </form>
+
+{% endblock %}

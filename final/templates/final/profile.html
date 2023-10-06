@@ -1,0 +1,53 @@
+{% extends "final/layout.html" %}
+
+
+{% block script %}
+    <style>
+    .jumbotron {
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+        background-color: #e9ecef;
+        border-radius: .3rem;
+    }
+    </style>
+{% endblock %}
+
+{% block style %} 
+    {% if user.points > 999 %}
+        style="background-color:gold;"
+    {% elif user.points > 499 %}
+        style="background-color:silver;"
+    {% elif user.points > 99 %}
+        style="background-color:#CD7F32;"
+    {% else %}
+        style="background-color:white;"
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <h2 style="text-align: center;">{{user.username}}</h2>
+</br>
+    <p style="text-align: center; font-size: larger; display: flex; flex-wrap: wrap;"></p>
+    <div class="jumbotron text-center" style="min-height: 7cm; padding: 2cm; display: flex; flex-wrap: wrap0; overflow: hidden;">
+        <div class="container">
+            <h1 class="display-4" style="font-size: 1.2cm; text-align: center;">You have {{user.points}} points !</h1>
+            {% if user.points > 999 %}
+                <p class="lead">You are a GOLD student</p>
+            {% elif user.points > 499 %}
+                <p class="lead">You are a SILVER student</p>
+            {% elif user.points > 99 %}
+                <p class="lead">You are a BRONZE student</p>
+            {% else %}
+                <p class="lead"></p>
+            {% endif %}
+        </div>
+    </div>
+    <br/><br/>
+    <div class="jumbotron text-center" style="min-height: 2cm; padding: 5mm; display: flex; flex-wrap: wrap; overflow: hidden; margin:0.5cm">
+        <div class="container">
+            <p class="lead">If you get more than 100 marks, you become a bronze student!</p>
+            <p class="lead">If you get more than 500 marks, you become a silver student!</p>
+            <p class="lead">If you get more than 1000 marks, you become a gold student!</p>
+        </div>
+    </div>
+{% endblock %}

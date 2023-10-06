@@ -1,0 +1,23 @@
+{% extends "final/layout.html" %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'final/activities.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <h1  style="text-align: center;">Guess the word</h1>
+
+    <div id="body">
+        <div id='form'>
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea class="form-control" id="words" name="content" placeholder=" Type in (max 50) words you want to test (separated by spaces)" rows="10" required></textarea>
+            </div>
+            <br/>
+            <input type="submit" Value="Let's begin!" class="btn btn-outline-secondary" style="margin-left: 0.2cm;" onclick="speller('{{ user.id }}')">                
+        </div>
+        <ul id="wordlist" style="display: none;"> 
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "final/layout.html" %}
+
+{% block body %}
+    <h1  style="text-align: center;">New entry</h1>
+    <!--new article form-->
+    <form action="{% url 'newarticle' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" autofocus type="text" name="title" placeholder="Title" required>
+        </div>
+        <br/>
+        <a href="https://euangoddard.github.io/clipboard2markdown/" target="_blank" rel="noopener noreferrer" style="margin-left: 0.2cm;">Convert your article into MarkDown</a>
+        <br/><br/>
+        <div class="form-group">
+            <textarea class="form-control" id="description" name="content" placeholder="Enter content (in MarkDown) " rows="20" required></textarea>
+        </div>
+        
+        <br/><br/>
+        <input type="submit" Value="Save" class="btn btn-outline-secondary" style="margin-left: 0.2cm;">                
+    </form>
+
+{% endblock %}

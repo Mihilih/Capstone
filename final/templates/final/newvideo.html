@@ -1,0 +1,22 @@
+{% extends "final/layout.html" %}
+
+{% block body %}
+    <h1  style="text-align: center;">New Videos</h1>
+    <!--new video form-->
+    <div class="alert alert-danger" role="alert">
+        <li>Make sure the video is posted on YouTube</li>
+        <li>Go to the specific video, right click on the video and copy the embed code</li>
+    </div>
+
+    <form action="{% url 'newvideo' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" autofocus type="text" name="name" placeholder="Name of the video" required>
+            <br/>
+            <input class="form-control" autofocus type="text" name="code" placeholder="Embed code" required>
+        </div>
+        <br/>
+        <input type="submit" Value="Save" class="btn btn-outline-secondary " style="margin-left: 0.2cm;">                
+    </form>
+
+{% endblock %}

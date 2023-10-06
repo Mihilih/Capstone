@@ -1,0 +1,24 @@
+{% extends "final/layout.html" %}
+
+{% block body %}
+    <h1 style="text-align: center;">Blog</h1>
+
+    <div class="row">
+        {%for article in articles%}
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{article.title}}</h5>
+              <p class="card-text">-by {{article.creator}}</p>
+              <a href="{% url 'article' article.id %}" class="btn btn-dark">Read the article</a>
+            </div>
+          </div>
+        </div>
+      {%empty%}
+            <li>No Articles Yes</li>
+      {%endfor%}
+    </div>
+</br>
+<div class="text-center mx-auto justify-content-center"><a href="{% url 'newarticle' %}">Create a new article</a></div>
+
+{% endblock %}

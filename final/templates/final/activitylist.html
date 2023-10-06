@@ -1,0 +1,30 @@
+{% extends "final/layout.html" %}
+
+{% block body %}
+    <h1 style="text-align: center;">Activities</h1>
+
+    <div class="text-center mx-auto justify-content-center"">
+        
+        <div class="card border border-secondary" style="margin: 2cm;">
+          <div class="card-body">
+            <h5 class="card-title">Guess the word</h5>
+            <a href="{% url 'activity1' %}" class="btn btn-dark">Click here!</a>
+          </div>
+        </div>
+        <div class="card border border-secondary" style="margin: 2cm;">
+          <div class="card-body">
+            <h5 class="card-title">Count count count</h5>
+            <a href="{% url 'activity2' %}" class="btn btn-dark">Click here!</a>
+          </div>
+        </div>
+        <div class="card border border-secondary" style="margin: 2cm;">
+          <div class="card-body">
+            <h5 class="card-title">Colours!</h5>
+            <a href="{% url 'activity3' %}" class="btn btn-dark">Click here!</a>
+          </div>
+        </div>
+        
+    </div>
+</br>
+
+{% endblock %}

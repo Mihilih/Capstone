@@ -1,0 +1,83 @@
+{% extends "final/layout.html" %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'final/community.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <h2  style="text-align: center;">Community</h2>
+
+    {% if user.is_authenticated %}
+        <form action="{% url 'community' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea class="form-control border-dark" id="post" name="post" placeholder="Say something!" style="max-width: 85rem; margin: 0.7%;" rows="5" required></textarea>
+            </div>
+            <input class="btn btn-dark" type="submit" value="Post" style="margin-left: 1%;">
+        </form>
+        <hr>
+    {% else %}
+    <a href="{% url 'login' %}">Login to create a post!</a><br>
+    {% endif %}
+    <br>
+    <div class="card">
+        {% for post in page_obj %}
+                
+            <div class="card">
+                <div class="card-body">
+                    <b><p class="card-text" id="post_content_{{post.id}}" style="font-size:120%;">{{post.content}}</p></b>
+                    <i><p class="card-text" id="post_content_{{post.id}}" style="font-size:100%;">-{{post.user}}</p></i>
+                    {% if post.user == user%}
+                        <textarea class="form-control mb-2" id="edit_box_{{post.id}}" name="edit_box" style="display:none;">{{post.content}}</textarea>
+                        <button id="edit_button_{{post.id}}" class="btn btn-dark" style="display:none;">Save</button></br>
+                    {% else %}
+                        <br/>
+                    {% endif %}
+                    
+                    {% if post.user == user%}
+                        <button class="btn btn-dark" id="edit_{{post.id}}" onclick="edit('{{ post.id }}')" >Edit</button>
+                    {% endif %}
+                    <button class="btn btn-dark" id="comment_{{post.id}}" onclick="comment('{{ post.id }}')" >Comment</button>
+                    <hr id="line1_{{post.id}}" style="display: none;">
+                    
+                    <textarea class="form-control mb-2" id="comment_box_{{post.id}}" name="comment" style="display:none;" placeholder="Type your comment here" required></textarea>
+                    <button id="comment_button_{{post.id}}" class="btn btn-dark" style="display:none;">Comment</button></br>
+                
+                    <hr id="line2">
+                    <div id="comment_list_{{post.id}}">
+                        {%for comment in comments%}
+                            {%if comment in post.comments.all%}
+                            <div>
+                                <i><p style="margin-left: 1cm;">{{comment.user}}</i> - {{comment.content}}</p>
+                            </div>
+                            {%endif%}
+                        {%endfor%}
+                    </div>
+                </div>
+            </div></br>
+
+            {% empty %}
+                No posts yet
+            {% endfor %} 
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                    {% endif %}
+
+                    <span class="current">
+                        &nbsp&nbsp Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} &nbsp&nbsp 
+                    </span>
+                    
+                    {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>  
+{% endblock %}

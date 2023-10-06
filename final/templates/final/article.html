@@ -1,0 +1,9 @@
+{% extends "final/layout.html" %}
+
+{% block body %}
+    <b><h1 style="text-align: center;">{{article.title}}</h1></b></br>
+    <p>{{content|safe}}</p>
+    <hr>
+    <i>Written by - {{article.creator}}</i>
+    <hr>
+{% endblock %}

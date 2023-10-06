@@ -1,0 +1,45 @@
+{% extends "final/layout.html" %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'final/activities.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <h1  style="text-align: center;">Count count count</h1>
+    <div id='body'>
+        <div id='form' style="margin: 2mm;">
+            What do you want to do ?
+            <div class="form-group">
+                <select class="form-control col-md-3" id="category" required>
+                    <option value='Addition'>Addition</option>
+                    <option value='Subtraction'>Subtraction</option>
+                    <option value='Multiplication'>Multiplication</option>
+                    <option value='Division'>Division</option>
+                </select>
+            </div>
+            <br/>
+            <input class="form-control col-md-3" autofocus type="number" step="any" id="no_of_qs" min="1" placeholder="How many questions do you want?" required>
+            <br/>
+            Choose the first number from numbers from
+            <div style="display: inline-block;"><input class="form-control col-md-3" autofocus type="number" step="any" id="from1" required></div> 
+            to
+            <div style="display: inline-block;"><input class="form-control col-md-3" autofocus type="number" step="any" id="to1" required></div>   
+            <br/><br/>
+            Choose the second number from numbers from
+            <div style="display: inline-block;"><input class="form-control col-md-3" autofocus type="number" step="any" id="from2" required></div> 
+            to
+            <div style="display: inline-block;"><input class="form-control col-md-3" autofocus type="number" step="any" id="to2" required></div>   
+            <br/><br/> 
+            Include negative answers?
+            <div class="form-group">
+                <select class="form-control col-md-3" id="negative" required>
+                    <option value='teachers'>Yes</option>
+                    <option value='students'>No</option>
+                </select>
+            </div>
+            <br/> 
+            <input type="submit" Value="Let's begin!" class="btn btn-outline-secondary" style="margin-left: 0.2cm;" onclick="counter('{{ user.id }}')">
+        </div>
+    </div>
+{% endblock %}
